@@ -10,11 +10,30 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: black;
+            background: black;
             color: white;
             text-align: center;
             font-family: Arial, sans-serif;
             flex-direction: column;
+        }
+        #background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:url(21pp.webp) no-repeat center center;
+            background-size: contain;
+            background-color: black;
+        }
+        @media (min-width: 768px) {
+            #background {
+                background-size: cover;
+            }
+        }
+        #content {
+            position: relative;
+            z-index: 2;
         }
         #videoContainer {
             display: none;
@@ -45,7 +64,10 @@
     </style>
 </head>
 <body>
-    <button id="revealBtn" onclick="playVideo()">Trust Me</button>
+    <div id="background"></div>
+    <div id="content">
+        <button id="revealBtn" onclick="playVideo()">Trust Me</button>
+    </div>
     <div id="videoContainer">
         <video id="myVideo" controls>
             <source src="index.mp4" type="video/mp4">
@@ -54,7 +76,7 @@
     </div>
     <script>
         function playVideo() {
-            document.getElementById("revealBtn").style.display = "none";
+            document.getElementById("content").style.display = "none";
             let video = document.getElementById("myVideo");
             document.getElementById("videoContainer").style.display = "flex";
             video.play();
